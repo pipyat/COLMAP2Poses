@@ -1,10 +1,8 @@
 import numpy as np
 import os
 
-# Camera Extrinsics:
-
 file_path = '/content/images.txt'
-# Read the file and extract lines with the desired file type
+# Read the file and extract lines with the desired file type - each of these lines contains camera extrinsics
 file_type = '.jpg'
 file_type_lines = []
 with open(file_path, 'r') as file:
@@ -56,7 +54,8 @@ print("Must be close to zero:",np.max(np.linalg.inv(poses[0][:3,:3])-np.transpos
 
 np.save('poses.npy',poses)
 
-image_order = [] # for matching poses to the correct images
+# Determining image order for matching poses to images
+image_order = [] 
 for line in file_type_lines:
     values = line.split()
     print(values[-1])
